@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 class Item {
   final String name;
   final IconData icon;
+  final Color color;
 
-  Item(this.name, this.icon);
+  Item(this.name, this.icon, this.color);
 }
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
   final List<Item> items = [
-    Item("Lihat Item", Icons.description),
-    Item("Tambah Item", Icons.note_add),
-    Item("Logout", Icons.logout),
+    Item("Lihat Item", Icons.description, const Color.fromARGB(255, 158, 7*16+6, 8*16+2)),
+    Item("Tambah Item", Icons.note_add, const Color.fromARGB(255, 6*16, 5*16+7, 7*16)),
+    Item("Logout", Icons.logout, const Color.fromARGB(255, 4*16+13, 4*16+8, 6*16+1)),
   ];
 
   @override
@@ -21,7 +22,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Inventory Game'),
-        backgroundColor: Colors.orange,
+        backgroundColor: const Color.fromARGB(255, 15*16+7, 12*16+4, 10*16+5),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -71,7 +72,7 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.orange,
+      color: item.color,
       child: InkWell(
         // Area responsive terhadap sentuhan
         onTap: () {
