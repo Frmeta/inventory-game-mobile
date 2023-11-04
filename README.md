@@ -20,7 +20,7 @@ Sedangkan stateful widget berlaku sebaliknya dimana sifatnya adalah dinamis yang
 - AppBar: untuk menampilkan bilah atas di aplikasi
 - Scaffold: untuk membuat tata letak dasar aplikasi
 - GridView: untuk menampilkan elemen dalam tata letak grid
-- GridView.count: untuk membuat grid layout dengan jumlah kolom yang didefinikan.
+- GridView.count: untuk membuat grid layout dengan jumlah kolom yang didefinisikan.
 - SingleChildScrollView: untuk membuat area scrollable vertikal yang hanya memiliki satu widget anak.
 - Padding: untuk menambah jarak di sekitar widget anaknya
 - Container: untuk mengatur tata letak dan dekorasi widget anak di dalamnya. Anda dapat mengatur properti-properti seperti warna latar belakang, padding, margin, dan sebagainya menggunakan widget Container. Ini adalah salah satu widget yang sering digunakan untuk mengatur tampilan dalam antarmuka pengguna.
@@ -180,4 +180,4 @@ class ItemCard extends StatelessWidget {
   }
 }
 ```
-Hubungkan hp Android anda dengan PC menggunakan kabel data lalu jalankan `flutter run`. App akan dibuild dan terinstall di HP anda untuk siap dibuka.
+Hubungkan HP Android anda dengan PC menggunakan kabel data lalu jalankan `flutter run`. App akan dibuild dan terinstall di HP anda untuk siap dibuka.
