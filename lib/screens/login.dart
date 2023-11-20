@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      
+
                         TextField(
                             controller: _usernameController,
                             decoration: const InputDecoration(

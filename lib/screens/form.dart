@@ -154,7 +154,7 @@ class _InventoryFormPageState extends State<InventoryFormPage> {
                     // Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                     print("before request");
                     final response = await request.postJson(
-                        //"http://http://127.0.0.1:8000/create-flutter/",
+                        //"http://127.0.0.1:8000/create-flutter/",
                         "http://fredo-melvern-tugas.pbp.cs.ui.ac.id/create-flutter/",
                         jsonEncode(<String, String>{
                           'name': _name,
