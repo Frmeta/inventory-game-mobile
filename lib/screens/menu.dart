@@ -4,12 +4,12 @@ import 'package:inventory_game/screens/list_item.dart';
 import 'package:inventory_game/widgets/right_drawer.dart';
 import 'dart:math' as math;
 
-class Item {
+class Tombol {
   final String name;
   final IconData icon;
   final Color color;
 
-  Item(this.name, this.icon, this.color);
+  Tombol(this.name, this.icon, this.color);
 }
 
 class ItemDisplay {
@@ -21,10 +21,10 @@ class ItemDisplay {
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
-  final List<Item> items = [
-    Item("Lihat Item", Icons.description, const Color(0xFF9E7682)),
-    Item("Tambah Item", Icons.note_add, const Color(0xFF6F5770)),
-    Item("Logout", Icons.logout, const Color(0xFF4D4861)),
+  final List<Tombol> tombols = [
+    Tombol("Lihat Item", Icons.description, const Color(0xFF9E7682)),
+    Tombol("Tambah Item", Icons.note_add, const Color(0xFF6F5770)),
+    Tombol("Logout", Icons.logout, const Color(0xFF4D4861)),
   ];
 
   final List<ItemDisplay> itemDisplays = [
@@ -110,9 +110,8 @@ class MyHomePage extends StatelessWidget {
                 crossAxisCount: 3,
                 shrinkWrap: true,
 
-                children: items.map((Item item) {
-                  // Iterasi untuk setiap item
-                  return ItemCard(item);
+                children: tombols.map((Tombol tombol) {
+                  return ItemCard(tombol);
                 }).toList(),
               ),
             ],
@@ -124,14 +123,14 @@ class MyHomePage extends StatelessWidget {
 }
 
 class ItemCard extends StatelessWidget {
-  final Item item;
+  final Tombol tombol;
 
-  const ItemCard(this.item, {super.key}); // Constructor
+  const ItemCard(this.tombol, {super.key}); // Constructor
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: item.color,
+      color: tombol.color,
       child: InkWell(
         // Area responsive terhadap sentuhan
         onTap: () {
@@ -139,19 +138,24 @@ class ItemCard extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}!")));
+                content: Text("Kamu telah menekan tombol ${tombol.name}!")));
 
           // Pindah halaman
-          if (item.name == "Tambah Item") {
+          if (tombol.name == "Tambah Item") {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                     builder: (context) => const InventoryFormPage()));
-          } else if (item.name == "Lihat Item") {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ListItemPage()));
+          } else if (tombol.name == "Lihat Item") {
+            // tanpa database
+            // Navigator.pushReplacement(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => const ListItemPage()));
+          
+            // dengan database dari PaaS Fasilkom UI
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const ItemPage()));
           }
         },
         child: Container(
@@ -162,13 +166,13 @@ class ItemCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  item.icon,
+                  tombol.icon,
                   color: Colors.white,
                   size: 30,
                 ),
                 const Padding(padding: EdgeInsets.all(3)),
                 Text(
-                  item.name,
+                  tombol.name,
                   textAlign: TextAlign.center,
                   style: const TextStyle(color: Colors.white),
                 ),
