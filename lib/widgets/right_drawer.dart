@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_game/screens/menu.dart';
 import 'package:inventory_game/screens/form.dart';
 import 'package:inventory_game/screens/list_item.dart';
+import 'package:inventory_game/screens/menu.dart';
 
 class RightDrawer extends StatelessWidget {
   const RightDrawer({super.key});
@@ -29,6 +29,7 @@ class RightDrawer extends StatelessWidget {
                           fontSize: 15,
                         )),
                   ]))),
+
           ListTile(
             leading: const Icon(Icons.home_outlined),
             title: const Text('Halaman Utama'),
@@ -40,6 +41,7 @@ class RightDrawer extends StatelessWidget {
                   ));
             },
           ),
+
           ListTile(
             leading: const Icon(Icons.description_outlined),
             title: const Text('Lihat Item'),
@@ -47,7 +49,7 @@ class RightDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ListItemPage(),
+                    builder: (context) => const ItemPage(),
                   ));
             },
           ),

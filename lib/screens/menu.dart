@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_game/screens/form.dart';
-import 'package:inventory_game/screens/list_item.dart';
+import 'package:inventory_game/widgets/item_card.dart';
 import 'package:inventory_game/widgets/right_drawer.dart';
 import 'dart:math' as math;
 
@@ -122,68 +121,6 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class ItemCard extends StatelessWidget {
-  final Tombol tombol;
-
-  const ItemCard(this.tombol, {super.key}); // Constructor
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: tombol.color,
-      child: InkWell(
-        // Area responsive terhadap sentuhan
-        onTap: () {
-          // Memunculkan SnackBar ketika diklik
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(
-                content: Text("Kamu telah menekan tombol ${tombol.name}!")));
-
-          // Pindah halaman
-          if (tombol.name == "Tambah Item") {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const InventoryFormPage()));
-          } else if (tombol.name == "Lihat Item") {
-            // tanpa database
-            // Navigator.pushReplacement(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => const ListItemPage()));
-          
-            // dengan database dari PaaS Fasilkom UI
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const ItemPage()));
-          }
-        },
-        child: Container(
-          // Container untuk menyimpan Icon dan Text
-          padding: const EdgeInsets.all(8),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  tombol.icon,
-                  color: Colors.white,
-                  size: 30,
-                ),
-                const Padding(padding: EdgeInsets.all(3)),
-                Text(
-                  tombol.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
 
 class ItemDisplayCard extends StatelessWidget {
   final ItemDisplay itemDisplay;
@@ -214,10 +151,4 @@ class ItemDisplayCard extends StatelessWidget {
   }
 }
 
-class InventoryItem {
-  final String name;
-  final int amount;
-  final String description;
 
-  InventoryItem(this.name, this.amount, this.description);
-}

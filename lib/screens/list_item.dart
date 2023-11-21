@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_game/screens/menu.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:inventory_game/models/item.dart';
 import 'package:inventory_game/widgets/right_drawer.dart';
 
-class ListItemPage extends StatefulWidget {
-  const ListItemPage({super.key});
+class LocalItemPage extends StatefulWidget {
+  const LocalItemPage({super.key});
 
   @override
-  State<ListItemPage> createState() => WiListItemPage();
+  State<LocalItemPage> createState() => _LocalItemPageState();
 }
 
-class WiListItemPage extends State<ListItemPage> {
+class InventoryItem {
+  final String name;
+  final int amount;
+  final String description;
+
+  InventoryItem(this.name, this.amount, this.description);
+}
+
+class _LocalItemPageState extends State<LocalItemPage> {
   static List<InventoryItem> database = <InventoryItem>[
     InventoryItem("Baju", 12, "Pakaian"),
     InventoryItem("Laptop", 2, "Teknologi"),
@@ -54,7 +61,7 @@ class WiListItemPage extends State<ListItemPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: database.map((InventoryItem inventoryItem) {
-                  return InventoryItemCard(inventoryItem);
+                  return OfflineItemCard(inventoryItem);
                 }).toList(),
               )
             ],
@@ -65,10 +72,10 @@ class WiListItemPage extends State<ListItemPage> {
   }
 }
 
-class InventoryItemCard extends StatelessWidget {
+class OfflineItemCard extends StatelessWidget {
   final InventoryItem inventoryItem;
 
-  const InventoryItemCard(this.inventoryItem, {super.key}); // Constructor
+  const OfflineItemCard(this.inventoryItem, {super.key}); // Constructor
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +104,7 @@ class InventoryItemCard extends StatelessWidget {
 }
 
 
+
 class ItemPage extends StatefulWidget {
   const ItemPage({Key? key}) : super(key: key);
 
@@ -108,8 +116,8 @@ class _ItemPageState extends State<ItemPage> {
   Future<List<Item>> fetchItem() async {
     // Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
     var url = Uri.parse(
-        'http://fredo-melvern-tugas.pbp.cs.ui.ac.id/json/'
-        //'http://127.0.0.1:8000/json/'
+        //'http://fredo-melvern-tugas.pbp.cs.ui.ac.id/json/'
+        'http://127.0.0.1:8000/json/'
         );
     var response = await http.get(
       url,
@@ -135,7 +143,7 @@ class _ItemPageState extends State<ItemPage> {
         appBar: AppBar(
           title: const Text('Item'),
         ),
-        drawer: const RightDrawer(),
+        endDrawer: const RightDrawer(),
         body: FutureBuilder(
             future: fetchItem(),
             builder: (context, AsyncSnapshot snapshot) {
