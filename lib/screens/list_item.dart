@@ -119,6 +119,7 @@ class _ItemPageState extends State<ItemPage> {
     var url = Uri.parse(
         //'http://fredo-melvern-tugas.pbp.cs.ui.ac.id/json/'
         'http://127.0.0.1:8000/json/'
+        //'http://127.0.0.1:8000/get-flutter/'
         );
     var response = await http.get(
       url,
@@ -165,52 +166,56 @@ class _ItemPageState extends State<ItemPage> {
                 } else {
                   return ListView.builder(
                       itemCount: snapshot.data!.length,
-                      itemBuilder: (_, index) => GestureDetector(
-                        onTap: (){
-                           Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Detail(
-                                name: snapshot.data![index].fields.name,
-                                amount: snapshot.data![index].fields.amount.toString(),
-                                description: snapshot.data![index].fields.description,
-                              ),
-                            ));
-                        },
+                      itemBuilder: (_, index) => ListTile(
+                            title: Container(
+                                      color: const Color(0xFFF7C4A5),
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 12),
+                                      padding: const EdgeInsets.all(20.0),
+                                      
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
 
-                        child: Container(
-                            
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
-                            padding: const EdgeInsets.all(20.0),
-                            
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                                          Text(
+                                            "${snapshot.data![index].fields.name}",
+                                            style: const TextStyle(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
 
-                                Text(
-                                  "${snapshot.data![index].fields.name}",
-                                  style: const TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                                          const SizedBox(height: 10),
 
-                                const SizedBox(height: 10),
+                                          Text("${snapshot.data![index].fields.amount}"),
 
-                                Text("${snapshot.data![index].fields.amount}"),
+                                          const SizedBox(height: 10),
 
-                                const SizedBox(height: 10),
+                                          Text("${snapshot.data![index].fields.description}")
 
-                                Text("${snapshot.data![index].fields.description}")
-
-                              ],
-                            ),
-                          )
-                      )
+                                        ],
+                                      ),
+                                    ),
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Detail(
+                                      pk: snapshot.data![index].pk.toString(),
+                                      name: snapshot.data![index].fields.name,
+                                      amount: snapshot.data![index].fields.amount.toString(),
+                                      description: snapshot.data![index].fields.description,
+                                      dateAdded: snapshot.data![index].fields.date_added.toString(),
+                                    )
+                                  )
+                                );
+                            },
+                          ),
+                        
                       
-                  );
+                    );
+                      
                 }
               }
             }));

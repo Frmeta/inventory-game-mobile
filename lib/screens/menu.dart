@@ -18,7 +18,7 @@ class ItemDisplay {
 }
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  MyHomePage({super.key});
 
   final List<Tombol> tombols = [
     Tombol("Lihat Item", Icons.description, const Color(0xFF9E7682)),

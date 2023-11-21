@@ -1,11 +1,12 @@
 import 'package:inventory_game/screens/menu.dart';
 import 'package:flutter/material.dart';
+import 'package:inventory_game/screens/register.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-    runApp(const LoginApp());
-}
+// void main() {
+//     runApp(const LoginApp());
+// }
 
 class LoginApp extends StatelessWidget {
 const LoginApp({super.key});
@@ -26,10 +27,10 @@ class LoginPage extends StatefulWidget {
     const LoginPage({super.key});
 
     @override
-    _LoginPageState createState() => _LoginPageState();
+    LoginPageState createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
     final TextEditingController _usernameController = TextEditingController();
     final TextEditingController _passwordController = TextEditingController();
 
@@ -46,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
 
-                        TextField(
+                      TextField(
                             controller: _usernameController,
                             decoration: const InputDecoration(
                                 labelText: 'Username',
@@ -114,6 +115,19 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             child: const Text('Login'),
                         ),
+
+
+                        //const SizedBox(height: 24.0),
+
+
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => RegistrationPage()),
+                                    );
+                          },
+                          child: const Text("Register"))
                     ],
                 ),
             ),

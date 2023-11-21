@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_game/screens/login.dart';
+//import 'package:inventory_game/screens/menu.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +25,9 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
             useMaterial3: true,
           ),
-          home: const LoginPage(),
+          home:  
+                  const LoginPage(),
+                  //MyHomePage()
         ));
   }
 }
