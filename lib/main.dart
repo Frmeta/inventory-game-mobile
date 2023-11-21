@@ -13,20 +13,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Provider(
-      create: (_) {
-        CookieRequest request = CookieRequest();
-        return request;
-      },
-      child: MaterialApp(
-        title: 'Inventory Game',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
-          useMaterial3: true,
-        ),
-        home: const LoginPage(),
-      )
-    );
+        create: (_) {
+          CookieRequest request = CookieRequest();
+          return request;
+        },
+        child: MaterialApp(
+          title: 'Inventory Game',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+            useMaterial3: true,
+          ),
+          home: const LoginPage(),
+        ));
   }
 }
-

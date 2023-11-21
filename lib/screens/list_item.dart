@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:inventory_game/models/item.dart';
+import 'package:inventory_game/screens/detail.dart';
 import 'package:inventory_game/widgets/right_drawer.dart';
 
 class LocalItemPage extends StatefulWidget {
@@ -164,14 +165,30 @@ class _ItemPageState extends State<ItemPage> {
                 } else {
                   return ListView.builder(
                       itemCount: snapshot.data!.length,
-                      itemBuilder: (_, index) => Container(
+                      itemBuilder: (_, index) => GestureDetector(
+                        onTap: (){
+                           Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Detail(
+                                name: snapshot.data![index].fields.name,
+                                amount: snapshot.data![index].fields.amount.toString(),
+                                description: snapshot.data![index].fields.description,
+                              ),
+                            ));
+                        },
+
+                        child: Container(
+                            
                             margin: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 12),
                             padding: const EdgeInsets.all(20.0),
+                            
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+
                                 Text(
                                   "${snapshot.data![index].fields.name}",
                                   style: const TextStyle(
@@ -179,14 +196,21 @@ class _ItemPageState extends State<ItemPage> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
+
                                 const SizedBox(height: 10),
+
                                 Text("${snapshot.data![index].fields.amount}"),
+
                                 const SizedBox(height: 10),
-                                Text(
-                                    "${snapshot.data![index].fields.description}")
+
+                                Text("${snapshot.data![index].fields.description}")
+
                               ],
                             ),
-                          ));
+                          )
+                      )
+                      
+                  );
                 }
               }
             }));
