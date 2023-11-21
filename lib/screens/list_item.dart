@@ -198,7 +198,7 @@ class _ItemPageState extends State<ItemPage> {
                                       ),
                                     ),
                             onTap: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => Detail(
@@ -206,7 +206,7 @@ class _ItemPageState extends State<ItemPage> {
                                       name: snapshot.data![index].fields.name,
                                       amount: snapshot.data![index].fields.amount.toString(),
                                       description: snapshot.data![index].fields.description,
-                                      dateAdded: snapshot.data![index].fields.date_added.toString(),
+                                      dateAdded: snapshot.data![index].fields.dateAdded.toString(),
                                     )
                                   )
                                 );

@@ -30,6 +30,7 @@ class Detail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              
               Text(
                 name,
                 style: const TextStyle(

@@ -117,7 +117,7 @@ class LoginPageState extends State<LoginPage> {
                         ),
 
 
-                        //const SizedBox(height: 24.0),
+                        const SizedBox(height: 24.0),
 
 
                         TextButton(

@@ -54,7 +54,6 @@ class MyHomePage extends StatelessWidget {
     ItemDisplay(Icons.casino),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,7 +120,6 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-
 class ItemDisplayCard extends StatelessWidget {
   final ItemDisplay itemDisplay;
 
@@ -150,5 +148,3 @@ class ItemDisplayCard extends StatelessWidget {
     );
   }
 }
-
-
